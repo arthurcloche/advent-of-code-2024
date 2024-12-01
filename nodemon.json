@@ -1,0 +1,4 @@
+{
+    "watch": ["app.js", "input.txt"],
+    "ext": "js,txt"
+  }
