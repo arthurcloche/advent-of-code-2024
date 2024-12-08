@@ -30,6 +30,7 @@ const fixSequence = (sequence) => {
     changed = false;
     for (let i = 0; i < ordered.length; i++) {
       for (let j = i + 1; j < ordered.length; j++) {
+        // not sure about the difference between some and find
         const rule = rules.some(
           (rule) => rule[0] === ordered[j] && rule[1] === ordered[i]
         );
@@ -45,11 +46,10 @@ const fixSequence = (sequence) => {
   return ordered;
 };
 
-// Use it on your filtered array
-const fixedSequences = a
+const fixed = a
   .map(fixSequence)
   .reduce(
     (acc, curr) => acc + Number(curr[Math.ceil((curr.length - 1) * 0.5)]),
     0
   );
-console.log(fixedSequences);
+console.log(fixed);

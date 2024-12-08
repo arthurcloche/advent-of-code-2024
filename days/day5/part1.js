@@ -17,39 +17,11 @@ const checkRules = (num, seq) => {
   }
   return true;
 };
-
-const a = sequences.filter(
-  (sequence) => !sequence.every((num, _, seq) => checkRules(num, seq))
-);
-
-const fixSequence = (sequence) => {
-  const ordered = [...sequence];
-  let changed;
-
-  do {
-    changed = false;
-    for (let i = 0; i < ordered.length; i++) {
-      for (let j = i + 1; j < ordered.length; j++) {
-        const rule = rules.some(
-          (rule) => rule[0] === ordered[j] && rule[1] === ordered[i]
-        );
-
-        if (rule) {
-          [ordered[i], ordered[j]] = [ordered[j], ordered[i]];
-          changed = true;
-        }
-      }
-    }
-  } while (changed);
-
-  return ordered;
-};
-
-// Use it on your filtered array
-const fixedSequences = a
-  .map(fixSequence)
+const a = sequences
+  .filter((sequence) => sequence.every((num, _, seq) => checkRules(num, seq)))
   .reduce(
     (acc, curr) => acc + Number(curr[Math.ceil((curr.length - 1) * 0.5)]),
     0
   );
-console.log(fixedSequences);
+
+console.log(a);
